@@ -1,0 +1,591 @@
+openapi: 3.0.3
+info: 
+  title: API de Administrar Tienda
+  description: Es un sistema de administración diseñado para ayudarte a gestionar eficazmente la información relacionada con clientes, empleados, proveedores, productos y sucursales.
+  version: 1.0.0
+servers:
+- url: http://localhost:8000/
+tags:
+- name: clientes
+- name: productos
+- name: empleados
+- name: proveedores
+- name: sucursales
+
+paths:
+  /clientes:
+    get:
+      tags:
+      - clientes
+      summary: Muestra la lista de clientes que estan en la DB
+      responses:
+        200: 
+          description: (OK) lista de clientes obtenida con exito
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+      
+         
+    post:
+      tags:
+      - clientes
+      summary: Inserta la informacion de un nuevo cliente a la DB
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientesPost"
+      responses:
+        200: 
+          description: (OK) la informacion se guardo correctamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+  /{idCliente}:
+    get: 
+      tags: 
+      - clientes
+      summary: Obtiene la informacion de la base de datos
+      parameters:
+        - name: idCliente
+          in: path
+          description: Se obtiene la informacion de un cliente solicitado
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) la informacion se guardo correctamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+    
+    put:
+      tags: 
+      - clientes
+      summary: Busca en la base de datos la coincidencia
+      parameters:
+        - name: idCliente
+          in: path
+          description: Actualiza la informacion del cliente
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) la informacion se guardo correctamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+    delete: 
+      tags:
+      - clientes
+      summary: Busca en la base de datos la coincidencia
+      parameters: 
+        - name: idCliente
+          in: path
+          description: Se elimina el cliente de la base de datos
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) El cliente fue borrado exitosamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+  
+  /productos:
+      get:
+        tags:
+        - productos
+        summary: Muestra la lista de los productos que estan en la DB
+        responses:
+          200: 
+            description: (OK) lista de productos obtenida con exito
+          400:
+            $ref: "#/components/responses/BadRequest"
+          404:
+           $ref: "#/components/responses/NotFound"
+          500:
+            $ref: "#/components/responses/ServerError"
+      
+         
+      post:
+        tags:
+        - productos
+        summary: Inserta la informacion de un nuevo producto a la DB
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductosPost"
+        responses:
+          200: 
+            description: (OK) la informacion se guardo correctamente
+          400:
+            $ref: "#/components/responses/BadRequest"
+          404:
+           $ref: "#/components/responses/NotFound"
+          500:
+            $ref: "#/components/responses/ServerError"
+          
+  /{idProductos}:
+    get: 
+      tags: 
+      - productos
+      summary: Obtiene la informacion de la base de datos
+      parameters:
+        - name: idProductos
+          in: path
+          description: Se obtiene la informacion de un producto solicitado
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) Se encontro la informacion del producto
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+    
+    put:
+      tags: 
+      - productos
+      summary: Busca en la base de datos la coincidencia
+      parameters:
+        - name: idProductos
+          in: path
+          description: Actualiza la informacion del producto
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) la informacion se guardo correctamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+    delete: 
+      tags:
+      - productos
+      summary: Busca en la base de datos la coincidencia
+      parameters: 
+        - name: idProductos
+          in: path
+          description: Se elimina el producto de la base de datos
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) El producto fue borrado exitosamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+    
+  
+  /empleados:
+      get:
+        tags:
+        - empleados
+        summary: Muestra la lista de los empleados que estan en la DB
+        responses:
+          200: 
+            description: (OK) lista de empleados obtenida con exito
+          400:
+            $ref: "#/components/responses/BadRequest"
+          404:
+           $ref: "#/components/responses/NotFound"
+          500:
+            $ref: "#/components/responses/ServerError"
+      
+         
+      post:
+        tags:
+        - empleados
+        summary: Inserta la informacion del nuevo empleado a la DB
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EmpleadoPost"
+        responses:
+          200: 
+            description: (OK) la informacion se guardo correctamente
+          400:
+            $ref: "#/components/responses/BadRequest"
+          404:
+           $ref: "#/components/responses/NotFound"
+          500:
+            $ref: "#/components/responses/ServerError"
+          
+  /{idEmpleado}:
+    get: 
+      tags: 
+      - empleados
+      summary: Obtiene la informacion de la base de datos
+      parameters:
+        - name: idEmpleado
+          in: path
+          description: Se obtiene la informacion del empleado solicitado
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) Se encontro la informacion del empleado
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+    
+    put:
+      tags: 
+      - empleados
+      summary: Busca en la base de datos la coincidencia
+      parameters:
+        - name: idEmpleado
+          in: path
+          description: Actualiza la informacion del empleado
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) la informacion se guardo correctamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+    delete: 
+      tags:
+      - empleados
+      summary: Busca en la base de datos la coincidencia
+      parameters: 
+        - name: idEmpleado
+          in: path
+          description: Se elimina el empleado de la base de datos
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) El empleado fue borrado exitosamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+          
+  /proveedores:
+      get:
+        tags:
+        - proveedores
+        summary: Muestra la lista de los proveedores que estan en la DB
+        responses:
+          200: 
+            description: (OK) lista de proveedores obtenida con exito
+          400:
+            $ref: "#/components/responses/BadRequest"
+          404:
+           $ref: "#/components/responses/NotFound"
+          500:
+            $ref: "#/components/responses/ServerError"
+      
+         
+      post:
+        tags:
+        - proveedores
+        summary: Inserta la informacion del nuevo proveedor a la DB
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProveedoresPost"
+        responses:
+          200: 
+            description: (OK) la informacion se guardo correctamente
+          400:
+            $ref: "#/components/responses/BadRequest"
+          404:
+           $ref: "#/components/responses/NotFound"
+          500:
+            $ref: "#/components/responses/ServerError"
+          
+  /{idProveedor}:
+
+    get: 
+      tags: 
+      - proveedores
+      summary: Obtiene la informacion de la base de datos
+      parameters:
+        - name: idProveedor
+          in: path
+          description: Se obtiene la informacion del proveedor solicitado
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) Se encontro la informacion del proveedor
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+    
+    put:
+      tags: 
+      - proveedores
+      summary: Busca en la base de datos la coincidencia
+      parameters:
+        - name: idProveedor
+          in: path
+          description: Actualiza la informacion del proveedor
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) la informacion se guardo correctamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+    delete: 
+      tags:
+      - proveedores
+      summary: Busca en la base de datos la coincidencia
+      parameters: 
+        - name: idProveedor
+          in: path
+          description: Se elimina el proveedor de la base de datos
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) El proveedor fue borrado exitosamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+          
+  /sucursales:
+      get:
+        tags:
+        - sucursales
+        summary: Muestra la lista de las sucursales que estan en la DB
+        responses:
+          200: 
+            description: (OK) lista de sucursales obtenida con exito
+          400:
+            $ref: "#/components/responses/BadRequest"
+          404:
+           $ref: "#/components/responses/NotFound"
+          500:
+            $ref: "#/components/responses/ServerError"
+      
+         
+      post:
+        tags:
+        - sucursales
+        summary: Inserta la informacion de la nueva sucrusal a la DB
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SucursalesPost"
+        responses:
+          200: 
+            description: (OK) la informacion se guardo correctamente
+          400:
+            $ref: "#/components/responses/BadRequest"
+          404:
+           $ref: "#/components/responses/NotFound"
+          500:
+            $ref: "#/components/responses/ServerError"
+          
+  /{idSucursal}:
+    get: 
+      tags: 
+      - sucursales
+      summary: Obtiene la informacion de la base de datos
+      parameters:
+        - name: idSucursal
+          in: path
+          description: Se obtiene la informacion de la sucursal solicitada
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) Se encontro la informacion de la sucursal
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+    
+    put:
+      tags: 
+      - sucursales
+      summary: Busca en la base de datos la coincidencia
+      parameters:
+        - name: idSucursal
+          in: path
+          description: Actualiza la informacion de la sucursal
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) la informacion se guardo correctamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+          
+    delete: 
+      tags:
+      - sucursales
+      summary: Busca en la base de datos la coincidencia
+      parameters: 
+        - name: idSucursal
+          in: path
+          description: Se elimina la sucursal de la base de datos
+          required: true
+          schema: 
+            type: string
+      responses:
+        200: 
+          description: (OK) La sucursal fue borrado exitosamente
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+         $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
+    
+  
+  
+components:
+  responses:
+    NotFound: 
+      description: (NotFound) no se encontro la informacion
+    BadRequest: 
+      description: (BadRequest) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+    ServerError: 
+      description: Erro en el servidor
+
+  schemas:
+    ClientesPost:
+      type: object
+      properties:
+        nombre:
+          type: string
+        edad:
+          type: number
+        documento: 
+          type: number
+        direccionResidencia:
+          type: string
+          
+    ProductosPost:
+      type: object
+      properties: 
+        nombre: 
+          type: string
+        cantidad: 
+          type: number
+        precioUnitario:
+          type: number
+        id_Proveedor:
+          type: string
+    
+    EmpleadoPost: 
+      type: object
+      properties:
+        nombre: 
+          type: string
+        edad: 
+          type: string
+        telefono:
+          type: string
+        documento: 
+          type: string
+        cargo:
+          type: string
+        id_Sucurcal: 
+          type: string
+          
+    ProveedoresPost:
+      type: object
+      properties:
+        nombre:
+          type: string
+        producto: 
+          type: string
+        contacto: 
+          type: object
+          
+    SucursalesPost:
+      type: object
+      properties:
+        nombre:
+          type: string
+        ubicacion:
+          type: string
+        contacto: 
+          type: object
+          
+
+      
+        
+          
