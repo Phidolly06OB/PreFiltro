@@ -1,0 +1,25 @@
+nav{
+    background-color: #1F1D2B;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+}
+
+.divicion1{
+    width: 20%;
+    color: white;
+    margin-left: 10px;
+}
+
+.divicion2{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-right: 30px;
+}
