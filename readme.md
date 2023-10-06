@@ -45,6 +45,12 @@
 
 <br>
 
+# 🎨 Diseño UIX
+
+<img src="./frontend/src/assets/UIX.png"/>
+
+<br>
+
 # 🖋️Autor
 
 **Phidolly Ojeda**
