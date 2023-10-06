@@ -31,6 +31,12 @@
 
 <br>
 
+<br>
+
+# 🎨 Diseño UIX
+
+<img src="./frontend/src/assets/UIX.png"/>
+
 # Tecnologías Utilizadas
 
 <div align="center">
@@ -43,11 +49,7 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="70" height="70" />
 </div>
 
-<br>
 
-# 🎨 Diseño UIX
-
-<img src="./frontend/src/assets/UIX.png"/>
 
 <br>
 
