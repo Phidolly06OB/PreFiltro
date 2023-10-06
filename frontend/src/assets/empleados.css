@@ -1,14 +1,9 @@
-body{
-    background-color: rgb(37, 40, 54);
-}
-
 .cardMio{
     display: flex;
     align-items: center;
     gap: 4px;
     padding: 0.75rem;
 }
-
 
 thead tr{
     border-bottom: 3px solid #dee2e6;
@@ -19,17 +14,15 @@ td{
     font-size: 17px;
 }
 
-.contenido{
-    margin: 2rem 2rem;
-    color: white;
+
+.fondoContenido{
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.441);
+    padding: 15px 12px;
+    margin-top: 2rem;
 }
 
-.contenido h1{
-    text-align: center;
-    margin-top: 3rem;
-}
-
-.boton{
+.botonE{
     margin-top: 2rem;
     background-color: #EA7C69;
     color: black;
@@ -40,21 +33,6 @@ td{
     padding: 10px;
     border: none;
     border-radius: 5px;
-    width: 12rem;
+    width: 14rem;
     text-decoration: none;
 }
-
-
-
-.fondoContenido{
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.441);
-    padding: 15px 12px;
-    margin-top: 2rem;
-}
-
-@media (max-width: 800px) {
-    .contenido a{
-        width: 100%;
-    }
-  }

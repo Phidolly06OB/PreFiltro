@@ -1,0 +1,16 @@
+form{
+    margin: 4rem 25rem;
+    color: white;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    margin-top: 3rem;
+}
+
+@media (max-width: 800px) {
+    form{
+        margin: 2.5rem 0.5rem;
+    }
+  }

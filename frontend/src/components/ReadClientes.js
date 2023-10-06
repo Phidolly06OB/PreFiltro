@@ -3,20 +3,13 @@ import React, { useState, useEffect } from "react";
 
 import Table from "react-bootstrap/Table";
 import "../assets/clientes.css";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-
 
 import Footer from "./footer";
 import Navbar from "./navbar";
+import { Link } from "react-router-dom";
 
 export default function ReadClientes() {
   const [APIdata, setApiData] = useState([]);
-  const [show, setShow] = useState(false);
-  
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   useEffect(() => {
     axios.get("http://localhost:8000/clientes").then((response) => {
@@ -41,9 +34,7 @@ export default function ReadClientes() {
       <Navbar />
       <div className="contenido">
         <h1>Clientes</h1>
-
-        <div class="boton">
-          <button onClick={handleShow}>
+        <Link className="boton" to="/newCliente">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon icon-tabler icon-tabler-user-plus"
@@ -62,12 +53,11 @@ export default function ReadClientes() {
               <path d="M19 16v6" />
               <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
             </svg>
-            Agregar Empleado
-          </button>
-        </div>
+            Agregar Cliente
+        </Link>
 
         <div className="fondoContenido">
-          <Table  hover responsive  variant="dark">
+          <Table hover responsive variant="dark">
             <thead>
               <tr>
                 <th class="col-md-1">
@@ -238,15 +228,6 @@ export default function ReadClientes() {
                         <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                       </svg>
                     </button>
-
-                    <button type="button" class="btn btn-success update" data-toggle="modal" data-target="#update" data-whatever="@mdo">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                        <path d="M16 5l3 3" />
-                    </svg>
-                    </button>
                   </td>
                 </tr>
               ))}
@@ -255,28 +236,7 @@ export default function ReadClientes() {
         </div>
       </div>
 
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          I will not close if you click outside me. Don not even try to press
-          escape key.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary">Understood</Button>
-        </Modal.Footer>
-      </Modal>
-
-      <Footer/>
+      <Footer />
     </div>
   );
 }

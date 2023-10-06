@@ -12,7 +12,7 @@ const sucursalSchema = mongoose.Schema({
         trim:true
     },
     contacto:{
-        type:Object,
+        type:String,
         required:true,
         trim:true
     }
